@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: master
+
+local_backend: true
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/cms/blog
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "templatekey", label: "Template Key",  widget: "hidden", default: "blog-page" }
+      - { name: date, label: Date, widget: datetime }
+      - { name: image, label: Image, widget: image }
+      - { name: title, label: Title }
+      - { name: description, label: Description }
+      - { name: body, label: Body, widget: markdown }
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home
+        file: "cms/pages/home.md"
+        fields:
+          - { name: "templatekey", label: "Template Key",  widget: "hidden", default: "home-page" }
+          - { name: path, label: Path, widget: hidden }
+          - { name: title, label: Title }
+          - { name: subtitle, label: Subtitle }
+      - name: about
+        label: About
+        file: "cms/pages/about.md"
+        fields:
+          - { name: "templatekey", label: "Template Key",  widget: "hidden", default: "about-page" }
+          - { name: path, label: Path, widget: hidden }
+          - { name: title, label: Title }
+          - { name: subtitle, label: Subtitle }
